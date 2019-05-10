@@ -37,12 +37,16 @@ class CategoryCell: UICollectionViewCell {
     if isSelected {
       appRedColor.setStroke()
     } else {
-      UIColor.black.setStroke()
+      //UIColor.black.setStroke()
+        UIColor.white.setStroke()
     }
     
     let edge = UIBezierPath(roundedRect: rect.insetBy(dx: lineWidth/2, dy: lineWidth/2), cornerRadius: 10)
     edge.lineWidth = lineWidth
-    edge.stroke()
+    edge.addClip()
+    //edge.stroke()
+    let endPoint = CGPoint(x: 0, y: rect.height)
+    drawGradient(startColor: cellGradientStart, endColor: cellGradientEnd, startPoint: .zero, endPoint: endPoint)
     
     guard let path = category?.iconPath else {return}
     

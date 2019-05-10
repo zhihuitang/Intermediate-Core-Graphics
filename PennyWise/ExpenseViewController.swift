@@ -72,7 +72,7 @@ class ExpenseViewController: UIViewController {
       selectedCategory, amount:spent)
   }
   
-  func setBtnDone(enabled enabled:Bool) {
+    func setBtnDone(enabled:Bool) {
     btnDone.isEnabled = enabled
     if btnDone.isEnabled {
       btnDone.backgroundColor = buttonEnabledColor
@@ -96,32 +96,32 @@ extension ExpenseViewController: NumberViewDelegate {
   
   func numberTapped(number:Int) {
     var text = resultLabel.text ?? "$0"
-    guard text.characters.count > 1 else { return }
+    guard text.count > 1 else { return }
     
     // drop off $ sign
-    text = String(text.characters.dropFirst())
+    text = String(text.dropFirst())
     let maxLength = 10
     switch number {
     case backspace:
-      text = String(text.characters.dropLast())
-      if text.characters.count == 0 {
+      text = String(text.dropLast())
+      if text.count == 0 {
         text = "0"
       }
-    case decimalPoint where text.characters.count < maxLength:
+    case decimalPoint where text.count < maxLength:
       // add decimal point if one does not exist already
-      let elements = text.characters.filter { $0 == "." }
+      let elements = text.filter { $0 == "." }
       if elements.count == 0 {
         text = text + "."
       }
     default:
-      if text.characters.count < maxLength {
+      if text.count < maxLength {
         text = text + "\(number)"
         
         // drop front 0 if no decimal place involved
-        let elements = text.characters.filter { $0 == "." }
+        let elements = text.filter { $0 == "." }
         if elements.count == 0 {
-          if text.characters.first == "0" {
-            text = String(text.characters.dropFirst())
+          if text.first == "0" {
+            text = String(text.dropFirst())
           }
         }
       }

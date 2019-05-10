@@ -26,20 +26,6 @@ class CategoryViewController: UICollectionViewController {
   
   
   // MARK: UICollectionViewDataSource
-  
-  
-//  override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//    return categories.count
-//  }
-//
-//
-//  override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-//    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CategoryCell", forIndexPath: indexPath) as! CategoryCell
-//    cell.category = categories[indexPath.row]
-//
-//    return cell
-//  }
-    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }

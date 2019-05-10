@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A37F3D52285C8330096A9D2 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A37F3D42285C8330096A9D2 /* UIView+.swift */; };
 		8215E4A11C3E4AF30040B202 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8215E4A01C3E4AF30040B202 /* SummaryView.swift */; };
 		822343A11C3B92B60086457F /* Expense.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8223439F1C3B92B60086457F /* Expense.storyboard */; };
 		824C021F1C87C5C0001B366F /* DrawIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824C021E1C87C5C0001B366F /* DrawIcon.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A37F3D42285C8330096A9D2 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		8215E4A01C3E4AF30040B202 /* SummaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		822343A01C3B92B60086457F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Expense.storyboard; sourceTree = "<group>"; };
 		824C021E1C87C5C0001B366F /* DrawIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawIcon.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 		826D23851C4A6E95000B290C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				4A37F3D42285C8330096A9D2 /* UIView+.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				82538D4F1C3A095200B79F6E /* CategoryViewController.swift in Sources */,
 				82538D591C3A31A900B79F6E /* ExpenseViewController.swift in Sources */,
 				82538D511C3A095A00B79F6E /* CategoryCell.swift in Sources */,
+				4A37F3D52285C8330096A9D2 /* UIView+.swift in Sources */,
 				82538D551C3A099600B79F6E /* Category.swift in Sources */,
 				82538D4B1C3A093400B79F6E /* BudgetCell.swift in Sources */,
 				82538D491C3A092F00B79F6E /* BudgetTableViewController.swift in Sources */,
