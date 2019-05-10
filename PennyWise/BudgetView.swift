@@ -37,16 +37,16 @@ class BudgetView: UIView {
   
   @IBInspectable var lineWidth:CGFloat = 13
   
-  override func drawRect(rect: CGRect) {
+  override func draw(_ rect: CGRect) {
     let path = UIBezierPath()
     path.lineWidth = lineWidth
     
-    path.moveToPoint(CGPoint(x: 0, y: round(rect.height/2) + 0.5))
+        path.move(to: CGPoint(x: 0, y: round(rect.height/2) + 0.5))
     
     let end = rect.width * CGFloat(percent)
-    path.addLineToPoint(CGPoint(x: end, y: round(rect.height/2)+0.5))
+        path.addLine(to: CGPoint(x: end, y: round(rect.height/2)+0.5))
     
-    path.lineCapStyle = .Round
+        path.lineCapStyle = .round
     
     if percent >= 1.0 {
       percentDangerLineColor.setStroke()

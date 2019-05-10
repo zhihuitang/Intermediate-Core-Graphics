@@ -49,7 +49,7 @@ class ExpenseViewController: UIViewController {
     super.viewDidLoad()
     
     // Set up numbers for numeric keyboard
-    for (index, numberView) in numberViews.enumerate() {
+    for (index, numberView) in numberViews.enumerated() {
       numberView.number = index
       numberView.delegate = self
     }
@@ -68,24 +68,24 @@ class ExpenseViewController: UIViewController {
       let numericText = String(text.characters.dropFirst())
       spent = (numericText as NSString).floatValue
     }
-    delegate?.expenseViewController(self, didExpenseCategory:
+    delegate?.expenseViewController(expenseViewController: self, didExpenseCategory:
       selectedCategory, amount:spent)
   }
   
   func setBtnDone(enabled enabled:Bool) {
-    btnDone.enabled = enabled
-    if btnDone.enabled {
+    btnDone.isEnabled = enabled
+    if btnDone.isEnabled {
       btnDone.backgroundColor = buttonEnabledColor
     }
   }
   
-  override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-    return [.Portrait, .PortraitUpsideDown]
+  override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    return [.portrait, .portraitUpsideDown]
   }
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "EmbedCategoryViewController" {
-      if let controller = segue.destinationViewController as? CategoryViewController {
+        if let controller = segue.destination as? CategoryViewController {
         controller.collectionView?.delegate = self
       }
     }
@@ -132,48 +132,40 @@ extension ExpenseViewController: NumberViewDelegate {
 
 extension ExpenseViewController: UICollectionViewDelegate {
 
-  func collectionView(collectionView: UICollectionView,
-                willDisplayCell cell: UICollectionViewCell,
-                forItemAtIndexPath indexPath: NSIndexPath) {
+    
+  func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
     if let cell = cell as? CategoryCell {
       if cell.category?.name == selectedCategory?.name {
-        collectionView.selectItemAtIndexPath(indexPath, animated: true,
-          scrollPosition: .None)
-        cell.selected = true
+        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .top)
+        //collectionView.selectItemAtIndexPath(indexPath, animated: true, scrollPosition: .None)
+        cell.isSelected = true
         cell.setNeedsDisplay()
         setBtnDone(enabled: true)
       }
     }
   }
   
-  func collectionView(collectionView: UICollectionView,
-                didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-    let cell = collectionView.cellForItemAtIndexPath(indexPath)
+  func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
+    let cell = collectionView.cellForItem(at: indexPath)
     cell?.setNeedsDisplay()
   }
   
-  func collectionView(collectionView: UICollectionView,
-                didSelectItemAtIndexPath indexPath: NSIndexPath) {
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     selectedCategory = categories[indexPath.row]
-    let cell = collectionView.cellForItemAtIndexPath(indexPath)
-                  
+    let cell = collectionView.cellForItem(at: indexPath)
+    
     cell?.setNeedsDisplay()
     setBtnDone(enabled: true)
   }
 }
 
 extension ExpenseViewController: UICollectionViewDelegateFlowLayout {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return cellMargin
+    }
   
-  func collectionView(collectionView: UICollectionView,
-          layout collectionViewLayout:UICollectionViewLayout,
-          minimumInteritemSpacingForSectionAtIndex section:Int) -> CGFloat {
-    return cellMargin
-  }
-  
-  func collectionView(collectionView : UICollectionView,
-          layout collectionViewLayout:UICollectionViewLayout,
-          sizeForItemAtIndexPath indexPath:NSIndexPath) -> CGSize
-  {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     // Ensure that there are three columns no
     // matter what device
     let size = collectionView.bounds.height / 2 - cellMargin

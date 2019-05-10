@@ -23,7 +23,8 @@
 import UIKit
 
 // Globals
-let π = CGFloat(M_PI)
+//let π = CGFloat(M_PI)
+let π = CGFloat.pi
 
 let lightViewColor = UIColor(red: 165/255, green: 193/255, blue: 207/255, alpha: 1.0)
 let darkViewColor = UIColor(red: 145/255, green: 175/255, blue: 191/255, alpha: 1.0)
@@ -44,18 +45,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
-  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    private func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     configureAppearance()
     return true
   }
   
   func configureAppearance() {
     UINavigationBar.appearance().barTintColor = lightViewColor
-    UINavigationBar.appearance().translucent = false
-    UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
+    UINavigationBar.appearance().isTranslucent = false
+    UIBarButtonItem.appearance().tintColor = UIColor.white
 
     // sets the status bar light
-    UINavigationBar.appearance().barStyle = .Black
+    UINavigationBar.appearance().barStyle = .black
   }
 }
 

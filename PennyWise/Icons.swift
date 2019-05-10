@@ -27,7 +27,7 @@ public class Icons : NSObject {
 
     //// Drawing Methods
 
-    public class func drawAutoIcon(frame: CGRect = CGRectMake(0, 0, 400, 400), isSelected: Bool = true) {
+    public class func drawAutoIcon(frame: CGRect = CGRect(x: 0, y: 0, width: 400, height: 400), isSelected: Bool = true) {
         //// Color Declarations
         let color = UIColor(red: 1.000, green: 0.984, blue: 0.306, alpha: 1.000)
         let selectedColor = UIColor(red: 0.963, green: 0.000, blue: 0.000, alpha: 1.000)
@@ -38,13 +38,13 @@ public class Icons : NSObject {
 
 
         //// Subframes
-        let group: CGRect = CGRectMake(frame.minX + floor(frame.width * 0.05490 - 0.46) + 0.96, frame.minY + floor(frame.height * 0.13875 + 0.5), floor(frame.width * 0.96703 - 0.31) - floor(frame.width * 0.05490 - 0.46) - 0.15, floor(frame.height * 0.87000) - floor(frame.height * 0.13875 + 0.5) + 0.5)
+        let group: CGRect = CGRect(x: frame.minX + floor(frame.width * 0.05490 - 0.46) + 0.96, y: frame.minY + floor(frame.height * 0.13875 + 0.5), width: floor(frame.width * 0.96703 - 0.31) - floor(frame.width * 0.05490 - 0.46) - 0.15, height: floor(frame.height * 0.87000) - floor(frame.height * 0.13875 + 0.5) + 0.5)
 
 
         //// Group
         //// Wheel 1 Drawing
-        let wheel1Path = UIBezierPath(ovalIn: CGRectMake(group.minX + floor(group.width * 0.11934 - 0.04) + 0.54, group.minY + floor(group.height * 0.71795) + 0.5, floor(group.width * 0.35231 - 0.04) - floor(group.width * 0.11934 - 0.04), floor(group.height * 0.99829) - floor(group.height * 0.71795)))
-        UIColor.lightGrayColor.setFill()
+        let wheel1Path = UIBezierPath(ovalIn: CGRect(x: group.minX + floor(group.width * 0.11934 - 0.04) + 0.54,y:  group.minY + floor(group.height * 0.71795) + 0.5, width: floor(group.width * 0.35231 - 0.04) - floor(group.width * 0.11934 - 0.04), height: floor(group.height * 0.99829) - floor(group.height * 0.71795)))
+        UIColor.lightGray.setFill()
         wheel1Path.fill()
         selectColor.setStroke()
         wheel1Path.lineWidth = 2
@@ -53,7 +53,7 @@ public class Icons : NSObject {
 
         //// Wheel 2 Drawing
         let wheel2Path = UIBezierPath(ovalIn: CGRectMake(group.minX + floor(group.width * 0.58254 - 0.04) + 0.54, group.minY + floor(group.height * 0.71966 + 0.5), floor(group.width * 0.81277 - 0.04) - floor(group.width * 0.58254 - 0.04), floor(group.height * 1.00000 + 0.5) - floor(group.height * 0.71966 + 0.5)))
-        UIColor.lightGrayColor.setFill()
+        UIColor.lightGray.setFill()
         wheel2Path.fill()
         selectColor.setStroke()
         wheel2Path.lineWidth = 2
@@ -86,7 +86,7 @@ public class Icons : NSObject {
         carWindowPath.addCurve(to: CGPointMake(group.minX + 0.60010 * group.width, group.minY + 0.18259 * group.height), controlPoint1: CGPointMake(group.minX + 0.65607 * group.width, group.minY + 0.32272 * group.height), controlPoint2: CGPointMake(group.minX + 0.64908 * group.width, group.minY + 0.23355 * group.height))
         carWindowPath.addCurve(to: CGPointMake(group.minX + 0.50215 * group.width, group.minY + 0.11040 * group.height), controlPoint1: CGPointMake(group.minX + 0.55112 * group.width, group.minY + 0.13163 * group.height), controlPoint2: CGPointMake(group.minX + 0.50215 * group.width, group.minY + 0.11040 * group.height))
         carWindowPath.close()
-        UIColor.whiteColor.setFill()
+        UIColor.white.setFill()
         carWindowPath.fill()
         selectColor.setStroke()
         carWindowPath.lineWidth = 1
@@ -120,4 +120,12 @@ public class Icons : NSObject {
         ovalPath.stroke()
     }
 
+}
+
+public func CGRectMake(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat ) -> CGRect {
+    return CGRect(x: x, y: y, width: width, height: height)
+}
+
+public func CGPointMake(_ x: CGFloat, _ y: CGFloat) -> CGPoint {
+    return CGPoint(x: x, y: y)
 }

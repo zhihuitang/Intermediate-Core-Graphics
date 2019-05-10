@@ -52,26 +52,24 @@ class MainViewController: UIViewController {
   
   private func calculateBudget() {
     // recalculate totals
-    let totalSpent = categories.reduce(0, combine: {$0 + $1.spent} )
-    let totalBudget = categories.reduce(0, combine: {$0 + $1.budget} )
+    let totalSpent = categories.reduce(0) { $0 + $1.spent}
+    let totalBudget = categories.reduce(0) { $0 + $1.budget}
     if totalBudget > 0 {
       summaryView.percentSpent = totalSpent / totalBudget
     }
   }
   
   // MARK:- Orientation changes
-  
-  override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-    
+  override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
     if size.width > size.height {
       // add graph view to the screen
       // and define the constraints
       view.addSubview(graphView)
       graphView.translatesAutoresizingMaskIntoConstraints = false
-      graphView.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor).active = true
-      graphView.topAnchor.constraintEqualToAnchor(view.topAnchor).active = true
-      graphView.widthAnchor.constraintEqualToAnchor(view.widthAnchor).active = true
-      graphView.heightAnchor.constraintEqualToAnchor(view.heightAnchor).active = true
+        graphView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        graphView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        graphView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        graphView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
       
       // hide navigation bar buttons on landscape
       navigationItem.rightBarButtonItem = nil
@@ -87,27 +85,26 @@ class MainViewController: UIViewController {
     
   }
   
-  override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-    return .All
-  }
+  override var supportedInterfaceOrientations: UIInterfaceOrientationMask { return .all }
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
     guard let identifier = segue.identifier else { return }
     switch identifier {
     case "AddExpense":
-      guard let navigationController = segue.destinationViewController as? UINavigationController  else { return }
+        guard let navigationController = segue.destination as? UINavigationController  else { return }
       if let controller = navigationController.viewControllers[0] as? ExpenseViewController  {
         controller.delegate = self
       }
     case "CategoryExpense":
-      guard let navigationController = segue.destinationViewController as? UINavigationController  else { return }
+        guard let navigationController = segue.destination as? UINavigationController  else { return }
       if let controller = navigationController.viewControllers[0] as? ExpenseViewController,
          let indexPath = sender as? NSIndexPath {
           controller.selectedCategory = categories[indexPath.row]
           controller.delegate = self
       }
     case "BudgetTableViewController":
-      if let controller = segue.destinationViewController as? BudgetTableViewController {
+        if let controller = segue.destination as? BudgetTableViewController {
         controller.tableView.delegate = self
         budgetTableViewController = controller
       }
@@ -123,8 +120,8 @@ extension MainViewController: UITableViewDelegate {
     // this does not look good
     // https://forums.developer.apple.com/message/12349#12349
     
-    dispatch_async(dispatch_get_main_queue()) { () -> Void in
-      self.performSegueWithIdentifier("CategoryExpense", sender: indexPath)
+    DispatchQueue.main.async {
+        self.performSegue(withIdentifier: "CategoryExpense", sender: indexPath)
     }
   }
 }
@@ -133,18 +130,19 @@ extension MainViewController: ExpenseViewControllerDelegate {
 
   // Do all updates here
   func expenseViewController(expenseViewController: ExpenseViewController, didExpenseCategory category: Category?, amount:Float) {
-    dismissViewControllerAnimated(true, completion: {
+    dismiss(animated: true, completion: {
       if let category = category {
-        if let index = categories.indexOf(category) {
-          let indexPath = NSIndexPath(forRow: index, inSection: 0)
-          
+    
+        if let index = categories.firstIndex(of: category) {
+            let indexPath = IndexPath(row: index, section: 0)
+            
           category.spent += amount
           self.calculateBudget()
 
-          UIView.animateWithDuration(0.3, animations: {
-            self.budgetTableViewController?.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .None, animated: false)
+            UIView.animate(withDuration: 0.3, animations: {
+                self.budgetTableViewController?.tableView.scrollToRow(at: indexPath, at: .none, animated: false)
             }, completion: { finished in
-              self.budgetTableViewController?.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Left)
+                self.budgetTableViewController?.tableView.reloadRows(at: [indexPath], with: .left)
           })
         }
       }
@@ -153,11 +151,11 @@ extension MainViewController: ExpenseViewControllerDelegate {
 }
 
 extension UINavigationController {
-  override public func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-    if let visibleViewController = visibleViewController {
-      return visibleViewController.supportedInterfaceOrientations()
-    } else {
-      return .Portrait
+    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        if let visibleViewController = visibleViewController {
+            return visibleViewController.supportedInterfaceOrientations
+        } else {
+            return .portrait
+        }
     }
-  }
 }

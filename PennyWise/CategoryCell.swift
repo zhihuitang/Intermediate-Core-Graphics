@@ -32,12 +32,12 @@ class CategoryCell: UICollectionViewCell {
 
   @IBInspectable var lineWidth:CGFloat = 2
   
-  override func drawRect(rect: CGRect) {
+  override func draw(_ rect: CGRect) {
     
-    if selected {
+    if isSelected {
       appRedColor.setStroke()
     } else {
-      UIColor.blackColor().setStroke()
+      UIColor.black.setStroke()
     }
     
     let edge = UIBezierPath(roundedRect: rect.insetBy(dx: lineWidth/2, dy: lineWidth/2), cornerRadius: 10)
@@ -46,7 +46,7 @@ class CategoryCell: UICollectionViewCell {
     
     guard let path = category?.iconPath else {return}
     
-    scalePath(path, size: rect.size)
+    scalePath(path: path, size: rect.size)
     
     path.lineWidth = lineWidth
     path.stroke()
@@ -55,11 +55,11 @@ class CategoryCell: UICollectionViewCell {
   private func scalePath(path:UIBezierPath, size:CGSize) {
     // scale path - icons should all be same height
     let scale = size.height / path.bounds.size.height * 0.5
-    path.applyTransform(CGAffineTransformMakeScale(scale, scale))
+    path.apply(CGAffineTransform(scaleX: scale, y: scale))
     
     // move path to origin
-    path.applyTransform(CGAffineTransformMakeTranslation(-path.bounds.origin.x, -path.bounds.origin.y))
+    path.apply(CGAffineTransform(translationX: -path.bounds.origin.x, y: -path.bounds.origin.y))
     // move path into center
-    path.applyTransform(CGAffineTransformMakeTranslation(size.width/2 - path.bounds.width/2, size.height/2 - path.bounds.height/2))
+    path.apply(CGAffineTransform(translationX: size.width/2 - path.bounds.width/2, y: size.height/2 - path.bounds.height/2))
   }
 }

@@ -33,32 +33,32 @@ class DrawIcon {
     //// Bezier Drawing
     let window = UIBezierPath()
     window.move(to: CGPoint(x: 54.24, y: 163.06))
-    window.addCurve(to: CGPoint(107.83, 146.83), controlPoint1: CGPoint(71.29, 144.12), controlPoint2: CGPointMake(107.83, 146.83))
-    window.addCurve(to: CGPoint(193.47, 77.5), controlPoint1: CGPoint(107.83, 146.83), controlPoint2: CGPointMake(135, 77.5))
-    window.addCurveToPoint(CGPoint(282.11, 147.7), controlPoint1: CGPointMake(251.93, 77.5), controlPoint2: CGPointMake(282.11, 147.7))
-    window.addCurveToPoint(CGPoint(351.45, 163.06), controlPoint1: CGPointMake(282.11, 147.7), controlPoint2: CGPointMake(331.96, 144.12))
-    window.addCurveToPoint(CGPointMake(366.07, 222.58), controlPoint1: CGPointMake(370.94, 182), controlPoint2: CGPointMake(366.07, 222.58))
-    window.addLineToPoint(CGPointMake(39.62, 222.58))
-    window.addCurveToPoint(CGPointMake(54.24, 163.06), controlPoint1: CGPointMake(39.62, 222.58), controlPoint2: CGPointMake(37.18, 182))
-    window.closePath()
+    window.addCurve(to: CGPoint(x: 107.83, y: 146.83), controlPoint1: CGPoint(x: 71.29, y: 144.12), controlPoint2: CGPoint(x: 107.83, y: 146.83))
+    window.addCurve(to: CGPoint(x: 193.47, y: 77.5), controlPoint1: CGPoint(x: 107.83, y: 146.83), controlPoint2: CGPoint(x: 135, y: 77.5))
+    window.addCurve(to: CGPoint(x: 282.11, y:  147.7), controlPoint1: CGPoint(x: 251.93, y: 77.5), controlPoint2: CGPoint(x: 282.11, y: 147.7))
+    window.addCurve(to: CGPoint(x: 351.45, y:  163.06), controlPoint1: CGPoint(x: 282.11, y: 147.7), controlPoint2: CGPoint(x: 331.96, y: 144.12))
+    window.addCurve(to: CGPoint(x: 366.07, y:  222.58), controlPoint1: CGPoint(x: 370.94, y: 182), controlPoint2: CGPoint(x: 366.07, y: 222.58))
+    window.addLine(to: CGPoint(x: 39.62, y: 222.58))
+    window.addCurve(to: CGPoint(x: 54.24, y: 163.06), controlPoint1: CGPoint(x: 39.62, y: 222.58), controlPoint2: CGPoint(x: 37.18, y: 182))
+    window.close()
     
-    
-    let wheel1 = UIBezierPath(ovalInRect: CGRectMake(86.5, 245.5, 70, 66))
-    let wheel2 = UIBezierPath(ovalInRect: CGRectMake(244.5, 245.5, 70, 66))
+
+    let wheel1 = UIBezierPath(ovalIn: CGRect(x: 86.5, y: 245.5, width: 70, height: 66))
+    let wheel2 = UIBezierPath(ovalIn: CGRect(x: 244.5, y: 245.5, width: 70, height: 66))
     
     //// Bezier 2 Drawing
     let carBody = UIBezierPath()
-    carBody.moveToPoint(CGPointMake(188.8, 96.22))
-    carBody.addLineToPoint(CGPointMake(188.8, 147.7))
-    carBody.addLineToPoint(CGPointMake(258.78, 147.7))
-    carBody.addCurveToPoint(CGPointMake(235.46, 114.94), controlPoint1: CGPointMake(258.78, 147.7), controlPoint2: CGPointMake(252.95, 127.81))
-    carBody.addCurveToPoint(CGPointMake(188.8, 96.22), controlPoint1: CGPointMake(217.96, 102.07), controlPoint2: CGPointMake(188.8, 96.22))
+    carBody.move(to: CGPoint(x: 188.8, y: 96.22))
+    carBody.addLine(to: CGPoint(x: 188.8, y:  147.7))
+    carBody.addLine(to: CGPoint(x: 258.78,  y: 147.7))
+    carBody.addCurve(to: CGPoint(x: 235.46,  y: 114.94), controlPoint1: CGPoint(x: 258.78,  y: 147.7), controlPoint2: CGPoint(x: 252.95, y: 127.81))
+    carBody.addCurve(to: CGPoint(x: 188.8,  y: 96.22), controlPoint1: CGPoint(x: 217.96,  y: 102.07), controlPoint2: CGPoint(x: 188.8,  y: 96.22))
     
     let path = UIBezierPath()
-    path.appendPath(window)
-    path.appendPath(wheel1)
-    path.appendPath(wheel2)
-    path.appendPath(carBody)
+    path.append(window)
+    path.append(wheel1)
+    path.append(wheel2)
+    path.append(carBody)
     
     UIGraphicsEndImageContext()
     return path
@@ -70,14 +70,14 @@ class DrawIcon {
     UIGraphicsBeginImageContextWithOptions(drawingSize, false, 0.0)
     
     let path = UIBezierPath()
-    path.moveToPoint(CGPointMake(290, 29))
-    path.addLineToPoint(CGPointMake(76, 146))
-    path.addLineToPoint(CGPointMake(224, 203))
-    path.addLineToPoint(CGPointMake(132, 361))
-    path.addLineToPoint(CGPointMake(316, 187))
-    path.addLineToPoint(CGPointMake(193, 131))
-    path.addLineToPoint(CGPointMake(290, 29))
-    path.closePath()
+    path.move(to: CGPoint(x: 290, y: 29))
+    path.addLine(to: CGPoint(x: 76, y: 146))
+    path.addLine(to: CGPoint(x: 224, y: 203))
+    path.addLine(to: CGPoint(x: 132, y: 361))
+    path.addLine(to: CGPoint(x: 316, y: 187))
+    path.addLine(to: CGPoint(x: 193, y: 131))
+    path.addLine(to: CGPoint(x: 290, y: 29))
+    path.close()
     
     UIGraphicsEndImageContext()
     return path
@@ -86,19 +86,19 @@ class DrawIcon {
   class func drawFunIcon() -> UIBezierPath {
     UIGraphicsBeginImageContextWithOptions(drawingSize, false, 0.0)
     
-    let outerCircle = UIBezierPath(ovalInRect: CGRect(x: 46, y: 46, width: 310, height: 310))
-    let eye1 = UIBezierPath(ovalInRect: CGRect(x: 138, y: 126, width: 36, height: 72))
-    let eye2 = UIBezierPath(ovalInRect: CGRect(x: 223, y: 126, width: 36, height: 72))
+    let outerCircle = UIBezierPath(ovalIn: CGRect(x: 46, y: 46, width: 310, height: 310))
+    let eye1 = UIBezierPath(ovalIn: CGRect(x: 138, y: 126, width: 36, height: 72))
+    let eye2 = UIBezierPath(ovalIn: CGRect(x: 223, y: 126, width: 36, height: 72))
     let mouth = UIBezierPath()
-    mouth.moveToPoint(CGPoint(x: 135, y: 250))
-    mouth.addLineToPoint(CGPoint(x: 265, y: 250))
-    mouth.addCurveToPoint(CGPoint(x: 135, y: 250), controlPoint1: CGPoint(x: 240, y: 300), controlPoint2: CGPoint(x: 150, y: 300))
+    mouth.move(to: CGPoint(x: 135, y: 250))
+    mouth.addLine(to: CGPoint(x: 265, y: 250))
+    mouth.addCurve(to: CGPoint(x: 135, y: 250), controlPoint1: CGPoint(x: 240, y: 300), controlPoint2: CGPoint(x: 150, y: 300))
     
     let path = UIBezierPath()
-    path.appendPath(outerCircle)
-    path.appendPath(eye1)
-    path.appendPath(eye2)
-    path.appendPath(mouth)
+    path.append(outerCircle)
+    path.append(eye1)
+    path.append(eye2)
+    path.append(mouth)
     
     UIGraphicsEndImageContext()
     return path
@@ -109,36 +109,36 @@ class DrawIcon {
     UIGraphicsBeginImageContextWithOptions(drawingSize, false, 0.0)
     
     let basket = UIBezierPath()
-    basket.moveToPoint(CGPointMake(36, 102))
-    basket.addLineToPoint(CGPointMake(321, 102))
-    basket.addLineToPoint(CGPointMake(337, 40))
-    basket.addLineToPoint(CGPointMake(368, 25))
+    basket.move(to: CGPoint(x: 36, y: 102))
+    basket.addLine(to: CGPoint(x: 321, y: 102))
+    basket.addLine(to: CGPoint(x: 337, y: 40))
+    basket.addLine(to:CGPoint(x: 368, y: 25))
     
-    basket.moveToPoint(CGPointMake(41, 102))
-    basket.addLineToPoint(CGPointMake(88, 226))
-    basket.addLineToPoint(CGPointMake(280, 241))
-    basket.addLineToPoint(CGPointMake(321, 102))
+    basket.move(to: CGPoint(x: 41, y: 102))
+    basket.addLine(to: CGPoint(x: 88, y: 226))
+    basket.addLine(to: CGPoint(x: 280, y: 241))
+    basket.addLine(to: CGPoint(x: 321, y: 102))
     
     //// Wheels
-    let wheel1 = UIBezierPath(ovalInRect: CGRectMake(88, 305, 58, 58))
-    let wheel2 = UIBezierPath(ovalInRect: CGRectMake(240, 305, 58, 58))
+    let wheel1 = UIBezierPath(ovalIn: CGRect(x: 88, y: 305, width: 58, height: 58))
+    let wheel2 = UIBezierPath(ovalIn: CGRect(x: 240, y: 305, width: 58, height: 58))
     
     
     //// Bezier 3 Drawing
     let cartBase = UIBezierPath()
-    cartBase.moveToPoint(CGPointMake(280, 249))
-    cartBase.addCurveToPoint(CGPointMake(327, 269),
-      controlPoint1: CGPointMake(280, 249),
-      controlPoint2: CGPointMake(327, 233))
-    cartBase.addCurveToPoint(CGPointMake(295, 290),
-      controlPoint1: CGPointMake(327, 306), controlPoint2: CGPointMake(295, 290))
-    cartBase.addLineToPoint(CGPointMake(72, 290))
+    cartBase.move(to: CGPoint(x: 280, y: 249))
+    cartBase.addCurve(to: CGPoint(x: 327, y: 269),
+      controlPoint1: CGPoint(x: 280, y: 249),
+      controlPoint2: CGPoint(x: 327, y: 233))
+    cartBase.addCurve(to: CGPoint(x: 295, y: 290),
+      controlPoint1: CGPoint(x: 327, y: 306), controlPoint2: CGPoint(x: 295, y: 290))
+    cartBase.addLine(to: CGPoint(x: 72, y: 290))
     
     let path = UIBezierPath()
-    path.appendPath(basket)
-    path.appendPath(wheel1)
-    path.appendPath(wheel2)
-    path.appendPath(cartBase)
+    path.append(basket)
+    path.append(wheel1)
+    path.append(wheel2)
+    path.append(cartBase)
     
     UIGraphicsEndImageContext()
     
@@ -150,15 +150,15 @@ class DrawIcon {
   class func drawPetIcon() -> UIBezierPath {
     UIGraphicsBeginImageContextWithOptions(drawingSize, false, 0.0)
     
-    let paw1 = UIBezierPath(ovalInRect: CGRect(x: 130, y: 174, width: 140, height: 154))
-    let paw2 = UIBezierPath(ovalInRect: CGRect(x: 71, y: 104, width: 71, height: 89))
-    let paw3 = UIBezierPath(ovalInRect: CGRect(x: 161, y: 66, width: 71, height: 89))
-    let paw4 = UIBezierPath(ovalInRect: CGRect(x: 254, y: 104, width: 71, height: 89))
+    let paw1 = UIBezierPath(ovalIn: CGRect(x: 130, y: 174, width: 140, height: 154))
+    let paw2 = UIBezierPath(ovalIn: CGRect(x: 71, y: 104, width: 71, height: 89))
+    let paw3 = UIBezierPath(ovalIn: CGRect(x: 161, y: 66, width: 71, height: 89))
+    let paw4 = UIBezierPath(ovalIn: CGRect(x: 254, y: 104, width: 71, height: 89))
     let path = UIBezierPath()
-    path.appendPath(paw1)
-    path.appendPath(paw2)
-    path.appendPath(paw3)
-    path.appendPath(paw4)
+    path.append(paw1)
+    path.append(paw2)
+    path.append(paw3)
+    path.append(paw4)
     
     UIGraphicsEndImageContext()
     return path
@@ -169,17 +169,17 @@ class DrawIcon {
     UIGraphicsBeginImageContextWithOptions(drawingSize, false, 0.0)
     
     let query = UIBezierPath()
-    query.moveToPoint(CGPointMake(128, 107))
-    query.addCurveToPoint(CGPointMake(192, 37), controlPoint1: CGPointMake(128.5, 107.06), controlPoint2: CGPointMake(133.45, 37.5))
-    query.addCurveToPoint(CGPointMake(272, 121.96), controlPoint1: CGPointMake(252.21, 37.5), controlPoint2: CGPointMake(281.9, 77.25))
-    query.addCurveToPoint(CGPointMake(192.83, 201.45), controlPoint1: CGPointMake(262.11, 166.67), controlPoint2: CGPointMake(192.83, 201.45))
-    query.addLineToPoint(CGPointMake(192.83, 295.85))
+    query.move(to: CGPoint(x: 128, y: 107))
+    query.addCurve(to: CGPoint(x: 192, y: 37), controlPoint1: CGPoint(x: 128.5, y: 107.06), controlPoint2: CGPoint(x: 133.45, y: 37.5))
+    query.addCurve(to: CGPoint(x: 272, y: 121.96), controlPoint1: CGPoint(x: 252.21, y: 37.5), controlPoint2: CGPoint(x: 281.9, y: 77.25))
+    query.addCurve(to: CGPoint(x: 192.83, y: 201.45), controlPoint1: CGPoint(x: 262.11, y: 166.67), controlPoint2: CGPoint(x: 192.83, y: 201.45))
+    query.addLine(to: CGPoint(x: 192.83, y: 295.85))
     
-    let queryDot = UIBezierPath(ovalInRect: CGRectMake(177.5, 320.5, 30, 30))
+    let queryDot = UIBezierPath(ovalIn: CGRect(x: 177.5, y: 320.5, width: 30, height:30))
     
     let path = UIBezierPath()
-    path.appendPath(query)
-    path.appendPath(queryDot)
+    path.append(query)
+    path.append(queryDot)
     
     UIGraphicsEndImageContext()
     return path

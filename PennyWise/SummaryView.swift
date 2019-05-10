@@ -40,7 +40,7 @@ class SummaryView: UIView {
     layer.addSublayer(pointerLayer)
   }
   
-  override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
     let arcCenter = CGPoint(x: rect.midX, y: rect.height - margin)
     let radius = rect.height - lineWidth/2 - margin*2
     
@@ -60,9 +60,9 @@ class SummaryView: UIView {
     super.layoutSubviews()
     
     let path = createPointerPath()
-    pointerLayer.path = path.CGPath
+    pointerLayer.path = path.cgPath
     pointerLayer.bounds = path.bounds
-    pointerLayer.fillColor = darkViewColor.CGColor
+    pointerLayer.fillColor = darkViewColor.cgColor
     pointerLayer.anchorPoint = CGPoint(x: 0.5, y: 1)
     
     pointerLayer.position = CGPoint(x: bounds.midX, y: bounds.height-margin)
@@ -74,15 +74,15 @@ class SummaryView: UIView {
     
     let pointerPath = UIBezierPath()
 
-    pointerPath.moveToPoint(CGPoint(x:pointerWidth/2, y:0))
+    pointerPath.move(to: CGPoint(x:pointerWidth/2, y:0))
     
-    pointerPath.addCurveToPoint(
-      CGPoint(x: pointerWidth/2, y:pointerHeight),
+    pointerPath.addCurve(
+        to: CGPoint(x: pointerWidth/2, y:pointerHeight),
       controlPoint1: CGPoint(x: pointerWidth/2, y: 0),
       controlPoint2: CGPoint(x: -pointerWidth, y: pointerHeight))
 
-    pointerPath.addCurveToPoint(
-      CGPoint(x: pointerWidth/2, y: 0),
+    pointerPath.addCurve(
+        to: CGPoint(x: pointerWidth/2, y: 0),
       controlPoint1: CGPoint(x: pointerWidth*2, y: pointerHeight),
       controlPoint2: CGPoint(x: pointerWidth/2, y: 0))
 

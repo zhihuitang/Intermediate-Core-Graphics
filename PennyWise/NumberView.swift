@@ -48,12 +48,12 @@ class NumberView: UIView {
   
   @IBInspectable var lineWidth:CGFloat = 2
   
-  @IBInspectable var fillColor:UIColor = UIColor.redColor()
-  @IBInspectable var strokeColor:UIColor = UIColor.blueColor()
+  @IBInspectable var fillColor:UIColor = UIColor.red
+  @IBInspectable var strokeColor:UIColor = UIColor.blue
   
-  override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
     let insetRect = rect.insetBy(dx: lineWidth/2, dy: lineWidth/2)
-    let path = UIBezierPath(ovalInRect: insetRect)
+        let path = UIBezierPath(ovalIn: insetRect)
     path.lineWidth = lineWidth
     
     fillColor.setFill()
@@ -64,7 +64,7 @@ class NumberView: UIView {
   }
   
   @IBAction func handleTap(gesture:UITapGestureRecognizer) {
-    delegate?.numberTapped(number)
+    delegate?.numberTapped(number: number)
   }
   
   
@@ -79,21 +79,21 @@ class NumberView: UIView {
   func setup() {
     numberLabel = UILabel(frame: bounds)
     guard let numberLabel = numberLabel else { return }
-    numberLabel.textAlignment = .Center
+    numberLabel.textAlignment = .center
     numberLabel.textColor = darkTextColor
     numberLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 32)
     numberLabel.text = "0"
     addSubview(numberLabel)
 
     numberLabel.translatesAutoresizingMaskIntoConstraints  = false
-    numberLabel.topAnchor.constraintEqualToAnchor(topAnchor).active = true
-    numberLabel.heightAnchor.constraintEqualToAnchor(heightAnchor).active = true
-    numberLabel.leadingAnchor.constraintEqualToAnchor(leadingAnchor).active = true
-    numberLabel.widthAnchor.constraintEqualToAnchor(widthAnchor).active = true
+    numberLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
+    numberLabel.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
+    numberLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+    numberLabel.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
   }
-  
-  override func intrinsicContentSize() -> CGSize {
-    return bounds.size
-  }
+
+    override var intrinsicContentSize: CGSize {
+        return bounds.size
+    }
   
 }
